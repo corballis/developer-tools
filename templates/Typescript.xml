@@ -1,5 +1,40 @@
 <templateSet group="Typescript">
-  <template name="as" value="asd" toReformat="false" toShortenFQNames="true">
+  <template name="getset" value="public get$PROPERTY_CAPITAL$(): $TYPE$ {&#10;    return this.$PROPERTY$;&#10;}&#10;&#10;public set$PROPERTY_CAPITAL$($PROPERTY$: $TYPE$): void {&#10;    this.$PROPERTY$ = $PROPERTY$;&#10;}" toReformat="false" toShortenFQNames="true">
+    <variable name="PROPERTY" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PROPERTY_CAPITAL" expression="capitalize(PROPERTY)" defaultValue="" alwaysStopAt="false" />
+    <variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="TypeScript" value="true" />
+    </context>
+  </template>
+  <template name="isset" value="public is$PROPERTY_CAPITAL$(): $TYPE$ {&#10;    return this.$PROPERTY$;&#10;}&#10;&#10;public set$PROPERTY_CAPITAL$($PROPERTY$: $TYPE$): void {&#10;    this.$PROPERTY$ = $PROPERTY$;&#10;}" toReformat="false" toShortenFQNames="true">
+    <variable name="PROPERTY" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PROPERTY_CAPITAL" expression="capitalize(PROPERTY)" defaultValue="" alwaysStopAt="false" />
+    <variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="TypeScript" value="true" />
+    </context>
+  </template>
+  <template name="is" value="public is$PROPERTY_CAPITAL$(): $TYPE$ {&#10;    return this.$PROPERTY$;&#10;}&#10;" toReformat="false" toShortenFQNames="true">
+    <variable name="PROPERTY" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PROPERTY_CAPITAL" expression="capitalize(PROPERTY)" defaultValue="" alwaysStopAt="false" />
+    <variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="TypeScript" value="true" />
+    </context>
+  </template>
+  <template name="get" value="public get$PROPERTY_CAPITAL$(): $TYPE$ {&#10;    return this.$PROPERTY$;&#10;}&#10;" toReformat="false" toShortenFQNames="true">
+    <variable name="PROPERTY" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PROPERTY_CAPITAL" expression="capitalize(PROPERTY)" defaultValue="" alwaysStopAt="false" />
+    <variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="TypeScript" value="true" />
+    </context>
+  </template>
+  <template name="set" value="public set$PROPERTY_CAPITAL$($PROPERTY$: $TYPE$): void {&#10;    this.$PROPERTY$ = $PROPERTY$;&#10;}" toReformat="false" toShortenFQNames="true">
+    <variable name="PROPERTY" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PROPERTY_CAPITAL" expression="capitalize(PROPERTY)" defaultValue="" alwaysStopAt="false" />
+    <variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="TypeScript" value="true" />
     </context>
