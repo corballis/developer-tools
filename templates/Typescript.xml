@@ -1,0 +1,7 @@
+<templateSet group="Typescript">
+  <template name="as" value="asd" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="TypeScript" value="true" />
+    </context>
+  </template>
+</templateSet>
