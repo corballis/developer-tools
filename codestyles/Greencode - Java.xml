@@ -3,6 +3,7 @@
     <option name="SPACE_AFTER_TYPE_COLON" value="true" />
     <option name="FIELD_PREFIX" value="" />
     <option name="USE_DOUBLE_QUOTES" value="false" />
+	<option name="OBJECT_LITERAL_WRAP" value="2" />
   </TypeScriptCodeStyleSettings>
   <XML>
     <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
