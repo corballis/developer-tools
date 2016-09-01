@@ -7,18 +7,16 @@
       <option name="TypeScript" value="true" />
     </context>
   </template>
-  <template name="isset" value="public is$PROPERTY_CAPITAL$(): $TYPE$ {&#10;    return this.$PROPERTY$;&#10;}&#10;&#10;public set$PROPERTY_CAPITAL$($PROPERTY$: $TYPE$): void {&#10;    this.$PROPERTY$ = $PROPERTY$;&#10;}" toReformat="false" toShortenFQNames="true">
+  <template name="isset" value="public is$PROPERTY_CAPITAL$(): boolean {&#10;    return this.$PROPERTY$;&#10;}&#10;&#10;public set$PROPERTY_CAPITAL$($PROPERTY$: boolean): void {&#10;    this.$PROPERTY$ = $PROPERTY$;&#10;}" toReformat="false" toShortenFQNames="true">
     <variable name="PROPERTY" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="PROPERTY_CAPITAL" expression="capitalize(PROPERTY)" defaultValue="" alwaysStopAt="false" />
-    <variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="TypeScript" value="true" />
     </context>
   </template>
-  <template name="is" value="public is$PROPERTY_CAPITAL$(): $TYPE$ {&#10;    return this.$PROPERTY$;&#10;}&#10;" toReformat="false" toShortenFQNames="true">
+  <template name="is" value="public is$PROPERTY_CAPITAL$(): boolean {&#10;    return this.$PROPERTY$;&#10;}&#10;" toReformat="false" toShortenFQNames="true">
     <variable name="PROPERTY" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="PROPERTY_CAPITAL" expression="capitalize(PROPERTY)" defaultValue="" alwaysStopAt="false" />
-    <variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="TypeScript" value="true" />
     </context>
@@ -43,7 +41,6 @@
     <variable name="INDEX" expression="jsSuggestIndexName()" defaultValue="&quot;i&quot;" alwaysStopAt="true" />
     <variable name="ARRAY" expression="jsArrayVariable()" defaultValue="&quot;array&quot;" alwaysStopAt="true" />
     <context>
-      <option name="JS_STATEMENT" value="false" />
       <option name="TypeScript" value="true" />
     </context>
   </template>
@@ -52,7 +49,6 @@
     <variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VAR" expression="jsSuggestVariableName()" defaultValue="&quot;o&quot;" alwaysStopAt="true" />
     <context>
-      <option name="JS_STATEMENT" value="false" />
       <option name="TypeScript" value="true" />
     </context>
   </template>

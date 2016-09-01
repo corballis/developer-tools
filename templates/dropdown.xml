@@ -1,0 +1,73 @@
+<templateSet group="dropdown">
+  <template name="ddinskeymy" value="INSERT INTO $tableName$ (description, enabled, application_key) VALUES ('$description$', true, '$applicationKey$');" description="dropdown insert statement with application key for mysql" toReformat="false" toShortenFQNames="true">
+    <variable name="tableName" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="description" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="applicationKey" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="ddinskeypos" value="INSERT INTO $tableName$ (description, enabled, application_key) VALUES ('$description$', 't', '$applicationKey$');" description="dropdown insert statement with application key for postgresql" toReformat="false" toShortenFQNames="true">
+    <variable name="tableName" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="description" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="applicationKey" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="ddinsmy" value="INSERT INTO $tableName$ (description, enabled) VALUES ('$description$', true);" description="dropdown insert statement for mysql" toReformat="false" toShortenFQNames="true">
+    <variable name="tableName" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="description" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="ddinspos" value="INSERT INTO $tableName$ (description, enabled) VALUES ('$description$', 't');" description="dropdown insert statement for postgresql" toReformat="false" toShortenFQNames="true">
+    <variable name="tableName" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="description" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="ddtabkeymy" value="CREATE TABLE IF NOT EXISTS $tableName$ (&#10;  id INT NOT NULL AUTO_INCREMENT,&#10;  description VARCHAR(255) NULL,&#10;  enabled BOOLEAN DEFAULT true NOT NULL,&#10;  application_key VARCHAR(255) NULL,&#10;  PRIMARY KEY (id)&#10;);" description="dropdown table with application key for postgresql databases" toReformat="false" toShortenFQNames="true">
+    <variable name="tableName" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="ddtabkeypos" value="CREATE TABLE $tableName$ (&#10;  id              SERIAL                 NOT NULL,&#10;  description     CHARACTER VARYING(255),&#10;  enabled         BOOLEAN DEFAULT TRUE   NOT NULL,&#10;  application_key CHARACTER VARYING(255),&#10;  CONSTRAINT $tableName$_pkey PRIMARY KEY (id)&#10;);" description="dropdown table with application key for postresql databases" toReformat="false" toShortenFQNames="true">
+    <variable name="tableName" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="ddtabmy" value="CREATE TABLE IF NOT EXISTS $tableName$ (&#10;  id INT NOT NULL AUTO_INCREMENT,&#10;  description VARCHAR(255) NULL,&#10;  enabled BOOLEAN DEFAULT true NOT NULL,&#10;  PRIMARY KEY (id)&#10;);" description="new dropdown table for mysql databases" toReformat="false" toShortenFQNames="true">
+    <variable name="tableName" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="ddtabpos" value="CREATE TABLE $tableName$ (&#10;  id              SERIAL                 NOT NULL,&#10;  description     CHARACTER VARYING(255),&#10;  enabled         BOOLEAN DEFAULT TRUE   NOT NULL,&#10;  CONSTRAINT $tableName$_pkey PRIMARY KEY (id)&#10;);" description="new dropdown table for  postgresql databases" toReformat="false" toShortenFQNames="true">
+    <variable name="tableName" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="ddmany2one" value="@com.fasterxml.jackson.databind.annotation.JsonSerialize(using = com.corballis.vaquera.core.json.serializer.EntityToIntSerializer.class)&#10;@javax.persistence.ManyToOne(fetch=javax.persistence.FetchType.LAZY)&#10;@javax.persistence.JoinColumn(name=&quot;$joinColumn$&quot;)&#10;private $className$ $fieldName$;" description="generates many to one dropdown field" toReformat="true" toShortenFQNames="true" useStaticImport="true">
+    <variable name="fieldName" expression="suggestVariableName()" defaultValue="" alwaysStopAt="true" />
+    <variable name="className" expression="classNameComplete()" defaultValue="" alwaysStopAt="true" />
+    <variable name="joinColumn" expression="snakeCase(fieldName)" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="ddmany2many" value="@javax.persistence.ManyToMany(fetch=javax.persistence.FetchType.LAZY)&#10;@javax.persistence.JoinTable(name=&quot;$classNameSnake$_$inverseTableName$&quot;, joinColumns = { &#10;    @javax.persistence.JoinColumn(name=&quot;$classNameSnake$_id&quot;, nullable=false, updatable=false) }, inverseJoinColumns = { &#10;    @javax.persistence.JoinColumn(name=&quot;$inverseTableName$_id&quot;, nullable=false, updatable=false) })&#10;@com.fasterxml.jackson.databind.annotation.JsonDeserialize(contentUsing = com.corballis.vaquera.core.json.deserializer.PersistableDeserializer.class)&#10;@com.fasterxml.jackson.databind.annotation.JsonSerialize(contentUsing = com.corballis.vaquera.core.json.serializer.EntityToStringSerializer.class)&#10;private java.util.Set&lt;$inverseClass$&gt; $variableName$ = new java.util.HashSet&lt;$inverseClass$&gt;(0);&#10;&#10;public Set&lt;$inverseClass$&gt; get$inverseClass$() {&#10;    return this.$variableName$;&#10;}&#10;&#10;//TODO: check if this magic is really needed. &#10;public void set$inverseClass$(Set&lt;$inverseClass$&gt; $variableName$) {&#10;    this.$variableName$.isEmpty();&#10;    if ($variableName$ == null) {&#10;        $variableName$ = new HashSet&lt;Report&gt;(0);&#10;    }&#10;    this.$variableName$.clear();&#10;    this.$variableName$.addAll($variableName$);&#10;}" description="many to many droprown field" toReformat="true" toShortenFQNames="true" useStaticImport="true">
+    <variable name="classNameSnake" expression="snakeCase(className)" defaultValue="" alwaysStopAt="false" />
+    <variable name="inverseTableName" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="inverseClass" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="variableName" expression="camelCase(inverseClass)" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+</templateSet>
