@@ -1,4 +1,8 @@
 <code_scheme name="Greencode - Java">
+  <JavaCodeStyleSettings>
+    <option name="ANNOTATION_PARAMETER_WRAP" value="5" />
+    <option name="ALIGN_MULTILINE_ANNOTATION_PARAMETERS" value="true" />
+  </JavaCodeStyleSettings>
   <TypeScriptCodeStyleSettings>
     <option name="SPACE_AFTER_TYPE_COLON" value="true" />
     <option name="FIELD_PREFIX" value="" />
