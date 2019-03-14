@@ -11,7 +11,7 @@ set -e
 echo "Verify IntelliJ code formatter consistency"
 
 cd /opt/intellij/*
-./bin/format.sh -r $DEVELOPER_TOOLS_PATH/code-format/editor-verification-files -m "*.java|*.ts|*.js|*.html|*.css|*.json"
+./bin/format.sh -r $DEVELOPER_TOOLS_PATH/code-format/editor-verification-files -m "*.java|*.ts|*.js|*.html|*.css|*.json" -s $DEVELOPER_TOOLS_PATH/intellij-config/codestyles/Greencode.xml
 cd $DEVELOPER_TOOLS_PATH
 
 HAS_CHANGE=$(git status | grep -c "modified:")
