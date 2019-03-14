@@ -15,7 +15,7 @@ cd /opt/intellij/*
 cd $DEVELOPER_TOOLS_PATH
 
 echo "Checking that the reference files are unchanged"
-HAS_CHANGE=$(git status | grep -c "modified:")
+#HAS_CHANGE=$(git status | grep -c "modified:")
 #if [ ${HAS_CHANGE} -gt 0 ]; then
 #	echo "Probably some configuration properties have been changed in IntelliJ settings since the last verstion. The code format of the following files have been changed:"
 #	git status
