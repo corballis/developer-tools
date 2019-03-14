@@ -1,6 +1,6 @@
 public class Foo {
 
-    public int[] X = new int[]{1, 3, 5, 7, 9, 11};
+    public int[] X = new int[] {1, 3, 5, 7, 9, 11};
 
     public void foo(boolean a, int x, int y, int z) {
         label1:

@@ -19,12 +19,9 @@ public class Sample {
      * @throws ZException
      * @invalidTag
      */
-    public abstract String sampleMethod(int i,
-                                        int longParameterName,
-                                        int missingDescription) throws
-            XXXException,
-            YException,
-            ZException;
+    public abstract String sampleMethod(int i, int longParameterName, int missingDescription) throws XXXException,
+                                                                                                     YException,
+                                                                                                     ZException;
 
     /**
      * One-line comment

@@ -2,8 +2,8 @@
 @SuppressWarnings({"ALL"})
 public class Foo2<T extends Bar & Abba, U> {
 
-    int[] X = new int[]{1, 3, 5, 6, 7, 87, 1213, 2};
-    int[] empty = new int[]{};
+    int[] X = new int[] {1, 3, 5, 6, 7, 87, 1213, 2};
+    int[] empty = new int[] {};
 
     public void foo(int x, int y) {
         Runnable r = () -> {
