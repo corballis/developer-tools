@@ -14,7 +14,7 @@ cd /opt/intellij/*
 ./bin/format.sh -r $DEVELOPER_TOOLS_PATH/code-format/editor-verification-files -m "*.java|*.ts|*.js|*.html|*.css|*.json"
 cd $DEVELOPER_TOOLS_PATH
 
-HAS_CHANGE = $(git status | grep -c "modified:")
+HAS_CHANGE=$(git status | grep -c "modified:")
 if [ ${HAS_CHANGE} -gt 0 ]; then
 	echo "Probably some configuration properties have been changed in IntelliJ settings since the last verstion. The code format of the following files have been changed:"
 	git status
