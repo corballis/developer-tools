@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Set the following environment varibales with the proper values before execute this script.
+# INTELLIJ_VERSION: 2018.3.5
+# INTELLIJ_CONFIG_FOLDER: /home/user/.IntelliJIdea2018.3/config
+# INTELLIJ_LICENSE_KEY_URL: https://drive.google.com/a/corballis.ie/uc?authuser=0&id=1aldFdTVcIEYHjiFeJpM5IbGu9CWkoPX0&export=download
+# DEVELOPER_TOOLS_PATH: ~/developer-tools
+
+echo "Downloading IntellijJ $INTELLIJ_VERSION"
+
+sudo curl -L "https://download.jetbrains.com/idea/ideaIU-${INTELLIJ_VERSION}.tar.gz" --output ~/intellij.tar.gz
+
+sudo mkdir -p /opt/intellij
+sudo tar xzf ~/intellij.tar.gz -C /opt/intellij
+
+echo "Setting up development configuration"
+mkdir -p "${INTELLIJ_CONFIG_FOLDER}"
+cp "$DEVELOPER_TOOLS_PATH/intellij-config/*" $INTELLIJ_CONFIG_FOLDER
+cd $INTELLIJ_CONFIG_FOLDER
+
+echo "Configure IntelliJ license file"
+sudo curl -L "${INTELLIJ_LICENSE_KEY_URL}" --output "${INTELLIJ_CONFIG_FOLDER}/idea.key"
+
+echo "IntelliJ is ready to use"
