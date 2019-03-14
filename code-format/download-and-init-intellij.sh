@@ -17,7 +17,7 @@ sudo tar xzf ~/intellij.tar.gz -C /opt/intellij
 
 echo "Setting up development configuration"
 mkdir -p "${INTELLIJ_CONFIG_FOLDER}"
-cp $DEVELOPER_TOOLS_PATH/intellij-config/* $INTELLIJ_CONFIG_FOLDER
+cp -r $DEVELOPER_TOOLS_PATH/intellij-config/* $INTELLIJ_CONFIG_FOLDER
 
 echo "Configure IntelliJ license file"
 sudo curl -L "${INTELLIJ_LICENSE_KEY_URL}" --output "${INTELLIJ_CONFIG_FOLDER}/idea.key"
