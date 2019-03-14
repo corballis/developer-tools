@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+#set -e
 
 # Set the following environment varibales with the proper values before execute this script.
 # INTELLIJ_VERSION: 2018.3.5
