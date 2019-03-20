@@ -9,7 +9,7 @@
 
 echo "Verify IntelliJ code format"
 
-cd /opt/intellij/*
+cd ~/intellij/*
 ./bin/format.sh -r $1 -m "*.java|*.ts|*.js|*.html|*.css|*.json" -s $DEVELOPER_TOOLS_PATH/intellij-config/codestyles/Greencode.xml
 cd $2
 

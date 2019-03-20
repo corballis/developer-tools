@@ -12,11 +12,6 @@ commands:
   verify-code-format:
     description: Verifies proper code formatting
     steps:
-      - run: 
-            name: Create folder for Intellij
-            command: |
-                sudo mkdir -p /opt/intellij
-                sudo chmod -R 777 /opt/intellij
       - restore_cache:
             keys:
                 - intellij-2018-3-5
@@ -39,5 +34,5 @@ commands:
                 . $DEVELOPER_TOOLS_PATH/code-format/verify-code-format.sh $CIRCLE_WORKING_DIRECTORY $CIRCLE_WORKING_DIRECTORY
       - save_cache:
             paths:
-                - /opt/intellij
+                - ~/intellij
             key: intellij-2018-3-5
