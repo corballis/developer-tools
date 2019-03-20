@@ -8,12 +8,14 @@ set -e
 # INTELLIJ_LICENSE_KEY_URL: https://drive.google.com/a/corballis.ie/uc?authuser=0&id=1aldFdTVcIEYHjiFeJpM5IbGu9CWkoPX0&export=download
 # DEVELOPER_TOOLS_PATH: ~/developer-tools
 
-echo "Downloading IntellijJ $INTELLIJ_VERSION"
+if [ ! -d "/opt/intellij" ] then
+	echo "Downloading IntellijJ $INTELLIJ_VERSION"
 
-sudo curl -L "https://download.jetbrains.com/idea/ideaIU-${INTELLIJ_VERSION}.tar.gz" --output ~/intellij.tar.gz
+	sudo curl -L "https://download.jetbrains.com/idea/ideaIU-${INTELLIJ_VERSION}.tar.gz" --output ~/intellij.tar.gz
 
-sudo mkdir -p /opt/intellij
-sudo tar xzf ~/intellij.tar.gz -C /opt/intellij
+	sudo mkdir -p /opt/intellij
+	sudo tar xzf ~/intellij.tar.gz -C /opt/intellij
+fi 
 
 echo "Setting up development configuration"
 mkdir -p "${INTELLIJ_CONFIG_FOLDER}"
