@@ -9,7 +9,7 @@ set -e
 # DEVELOPER_TOOLS_PATH: ~/developer-tools
 
 
-if [[ ! -d "~/intellij" ]]; then
+if [[ ! -d "/home/circleci/intellij" ]]; then
 	echo "Downloading IntellijJ $INTELLIJ_VERSION"
 	sudo curl -L "https://download.jetbrains.com/idea/ideaIU-${INTELLIJ_VERSION}.tar.gz" --output ~/intellij.tar.gz
 	sudo mkdir -p ~/intellij
