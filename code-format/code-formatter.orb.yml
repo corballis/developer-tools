@@ -1,0 +1,32 @@
+version: 2.1
+description: | 
+This orb downloads and configures a specified version of IntelliJ IDEA and use it's code formatting capablities to verify that properly formatted code triggered the build. IMPORTANT: You need to provide an environment variable which contains an URL to your idea.key file (product license) unless IntelliJ won't start.
+This orb requires XServer to open IntelliJ, so make sure your build uses a docker image with that capablity eg.: circleci/openjdk:8u151-jdk-node-browsers
+The following environment variables are required:
+INTELLIJ_VERSION:  2018.3.5
+INTELLIJ_CONFIG_FOLDER: /home/user/.IntelliJIdea2018.3/config
+INTELLIJ_LICENSE_KEY_URL: https://path.to/yourlicensefile
+DEVELOPER_TOOLS_PATH: ~/developer-tools
+Code uses CIRCLE_WORKING_DIRECTORY environment variable to determine your project root.
+
+commands:
+  verify-code-format:
+    description: Verifies proper code formatting
+    steps:
+      - run:
+            name: Download Corballis Developer Tools
+            command: |
+                cd ~
+                git clone git@github.com:corballis/developer-tools.git
+      - run: 
+            name: Download and configure IntelliJ 
+            command: |
+                . $DEVELOPER_TOOLS_PATH/code-format/download-and-init-intellij.sh
+      - run: 
+            name: Verify the consistency of IntelliJ settings
+            command: |
+                . $DEVELOPER_TOOLS_PATH/code-format/verify-code-format.sh $DEVELOPER_TOOLS_PATH/code-format/editor-verification-files $DEVELOPER_TOOLS_PATH
+      - run: 
+            name: Verify checked in code format
+            command: |
+                . $DEVELOPER_TOOLS_PATH/code-format/verify-code-format.sh $CIRCLE_WORKING_DIRECTORY $CIRCLE_WORKING_DIRECTORY
