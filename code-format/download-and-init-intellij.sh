@@ -8,7 +8,7 @@ set -e
 # INTELLIJ_LICENSE_KEY_URL: https://drive.google.com/a/corballis.ie/uc?authuser=0&id=1aldFdTVcIEYHjiFeJpM5IbGu9CWkoPX0&export=download
 # DEVELOPER_TOOLS_PATH: ~/developer-tools
 
-if [ ! -d "/opt/intellij" ] then
+if [[ ! -d "/opt/intellij" ]]; then
 	echo "Downloading IntellijJ $INTELLIJ_VERSION"
 
 	sudo curl -L "https://download.jetbrains.com/idea/ideaIU-${INTELLIJ_VERSION}.tar.gz" --output ~/intellij.tar.gz
