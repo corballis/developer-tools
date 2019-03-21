@@ -5,8 +5,7 @@ The following environment variables are required:
 Code uses 'CIRCLE_WORKING_DIRECTORY' environment variable to determine your project root.
 INTELLIJ_VERSION:  2018.3.5
 INTELLIJ_CONFIG_FOLDER: /home/user/.IntelliJIdea2018.3/config
-INTELLIJ_LICENSE_KEY_URL: https://path.to/yourlicensefile
-DEVELOPER_TOOLS_PATH: ~/developer-tools"
+INTELLIJ_LICENSE_KEY_URL: https://path.to/yourlicensefile"
 
 commands:
   verify-code-format:
@@ -23,18 +22,18 @@ commands:
       - run: 
             name: Download and configure IntelliJ 
             command: |
-                . $DEVELOPER_TOOLS_PATH/code-format/init-variables.sh
-                . $DEVELOPER_TOOLS_PATH/code-format/download-and-init-intellij.sh
+                . /home/circleci/developer-tools/code-format/init-variables.sh
+                . /home/circleci/developer-tools/code-format/download-and-init-intellij.sh
       - run: 
             name: Verify the consistency of IntelliJ settings
             command: |
-                . $DEVELOPER_TOOLS_PATH/code-format/init-variables.sh
-                . $DEVELOPER_TOOLS_PATH/code-format/verify-code-format.sh $DEVELOPER_TOOLS_PATH/code-format/editor-verification-files $DEVELOPER_TOOLS_PATH
+                . /home/circleci/developer-tools/code-format/init-variables.sh
+                . /home/circleci/developer-tools/code-format/verify-code-format.sh /home/circleci/developer-tools/code-format/editor-verification-files /home/circleci/developer-tools
       - run: 
             name: Verify checked in code format
             command: |
-                . $DEVELOPER_TOOLS_PATH/code-format/init-variables.sh
-                . $DEVELOPER_TOOLS_PATH/code-format/verify-code-format.sh $CIRCLE_WORKING_DIRECTORY $CIRCLE_WORKING_DIRECTORY
+                . /home/circleci/developer-tools/code-format/init-variables.sh
+                . /home/circleci/developer-tools/code-format/verify-code-format.sh $CIRCLE_WORKING_DIRECTORY $CIRCLE_WORKING_DIRECTORY
       - save_cache:
             paths:
                 - ~/intellij
