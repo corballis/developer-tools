@@ -35,6 +35,8 @@ jobs:
 docker run --rm -v $(pwd):/data circleci/circleci-cli:alpine orb publish /data/code-formatter.orb.yml corballis/intellij-code-format@[VERSION] --token [YOUR_TOKEN_COMES_HERE]
 ```
 
+- If you need to make changes in the ORB's code it's better to use dev versions. In order to do this use ```@dev:any-string-you-want``` when you publish your ORB. Don't forget to publish the final version when you are finished with the development because dev versions will be removed after a period of time.
+
 # Create new ORB/namespace on Windows environment:
 - In order to create new ORB in the registry you need to use CicleCi CLI.
     - CLI only works on Linux environment. If you are using Windows the best option is to use CircleCi's docker image.
