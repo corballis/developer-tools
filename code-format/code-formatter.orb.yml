@@ -12,23 +12,6 @@ commands:
   verify-code-format:
     description: Verifies proper code formatting
     steps:
-      - run:
-            name: Initialize default environment
-            command: |
-                INTELLIJ_VERSION=${INTELLIJ_VERSION:-2018.3.5}
-                INTELLIJ_CONFIG_FOLDER=${INTELLIJ_CONFIG_FOLDER:-/home/circleci/.IntelliJIdea2018.3/config}
-                DEVELOPER_TOOLS_PATH=${DEVELOPER_TOOLS_PATH:-/home/circleci/developer-tools}
-                echo 'export INTELLIJ_VERSION="$INTELLIJ_VERSION"' >> /home/circleci/.bashrc
-                echo 'export INTELLIJ_CONFIG_FOLDER="$INTELLIJ_CONFIG_FOLDER"' >> /home/circleci/.bashrc
-                echo 'export INTELLIJ_CONFIG_FOLDER="$INTELLIJ_CONFIG_FOLDER"' >> /home/circleci/.bashrc
-                source /home/circleci/.bashrc
-      - run: 
-            name: Environment properties
-            command: |
-                echo "Working with the following environment: "
-                echo "INTELLIJ_VERSION = $INTELLIJ_VERSION"
-                echo "INTELLIJ_CONFIG_FOLDER = $INTELLIJ_CONFIG_FOLDER"
-                echo "DEVELOPER_TOOLS_PATH = $DEVELOPER_TOOLS_PATH"
       - restore_cache:
             keys:
                 - intellij-idea-2018-3-5
@@ -40,14 +23,17 @@ commands:
       - run: 
             name: Download and configure IntelliJ 
             command: |
+                . $DEVELOPER_TOOLS_PATH/code-format/init-variables.sh
                 . $DEVELOPER_TOOLS_PATH/code-format/download-and-init-intellij.sh
       - run: 
             name: Verify the consistency of IntelliJ settings
             command: |
+                . $DEVELOPER_TOOLS_PATH/code-format/init-variables.sh
                 . $DEVELOPER_TOOLS_PATH/code-format/verify-code-format.sh $DEVELOPER_TOOLS_PATH/code-format/editor-verification-files $DEVELOPER_TOOLS_PATH
       - run: 
             name: Verify checked in code format
             command: |
+                . $DEVELOPER_TOOLS_PATH/code-format/init-variables.sh
                 . $DEVELOPER_TOOLS_PATH/code-format/verify-code-format.sh $CIRCLE_WORKING_DIRECTORY $CIRCLE_WORKING_DIRECTORY
       - save_cache:
             paths:
