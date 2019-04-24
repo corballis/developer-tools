@@ -4,7 +4,7 @@ services:
   sonarqube:
     image: sonarqube
     ports:
-      - "9000:9000"
+      - "9001:9001"
     networks:
       - sonarnet
     environment:
@@ -13,6 +13,9 @@ services:
       - sonarqube_conf:/opt/sonarqube/conf
       - sonarqube_data:/opt/sonarqube/data
       - sonarqube_extensions:/opt/sonarqube/extensions
+    restart: always
+    depends_on:
+        - db
 
   db:
     image: postgres
