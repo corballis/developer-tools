@@ -8,7 +8,7 @@ SONAR_SERVER_URL=$2
 SONAR_LOGIN=$3
 SONAR_EXCLUSIONS=$4
 
-echo "Current directory: $1, SonarQube server: $SONAR_SERVER_URL, Exclusions: $SONAR_EXCLUSIONS"
+echo "Current directory: $1, SonarQube server: $SONAR_SERVER_URL, Sonar token: $SONAR_LOGIN, Exclusions: $SONAR_EXCLUSIONS"
 
 if [ -z "${PROJECT_KEY}" ]; then
 	echo "Generating project key..."
