@@ -22,7 +22,7 @@ commands:
             name: Download Corballis Developer Tools
             command: |
                 cd ~
-                git clone git@github.com:corballis/developer-tools.git &> /dev/null
+                [ -d "developer-tools" ] || git clone git@github.com:corballis/developer-tools.git
       - run: 
             name: Execute SonarQube analysis
             command: |

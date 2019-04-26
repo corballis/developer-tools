@@ -8,8 +8,7 @@ SONAR_SERVER_URL=$2
 SONAR_LOGIN=$3
 SONAR_EXCLUSIONS=$4
 
-echo "Current directory:"
-pwd
+echo "Current directory: $1, SonarQube server: $SONAR_SERVER_URL, Exclusions: $SONAR_EXCLUSIONS"
 
 if [ -z "${PROJECT_KEY}" ]; then
 	PROJECT_NAME=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.artifactId}' --non-recursive exec:exec 2>/dev/null)
