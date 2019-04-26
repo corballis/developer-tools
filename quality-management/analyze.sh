@@ -34,7 +34,7 @@ while [ $(curl -s -u $SONAR_LOGIN: $TASK_URL 2>&1 | grep -q 'IN_PROGRESS'; echo 
 done
 
 echo "Task result: "
-curl -s $TASK_URL
+curl -s -u $SONAR_LOGIN: $TASK_URL
 
 ANALYSIS_ID=$(curl -s -u $SONAR_LOGIN: $TASK_URL | sed -e 's/[{}]/''/g' | awk -v RS=',"' -F: '/^analysisId/ {print $2}' | grep -oP '"\K[^"]+')
 
