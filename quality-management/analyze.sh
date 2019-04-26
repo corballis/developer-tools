@@ -6,6 +6,7 @@ cd $1
 
 SONAR_SERVER_URL=$2
 SONAR_LOGIN=$3
+SONAR_EXCLUSIONS=$4
 
 echo "Current directory:"
 pwd
@@ -19,7 +20,7 @@ fi
 echo "SonarQube will analyze this project with the following key: $PROJECT_KEY"
 
 echo "Waiting for SonarQube task to start (might take a while....)"
-TASK_URL=$(mvn -DskipTests sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.projectName=$PROJECT_KEY -Dsonar.login=$SONAR_LOGIN | tee out | grep -Eo 'http.*/api/ce/task.*')
+TASK_URL=$(mvn -DskipTests sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.projectName=$PROJECT_KEY -Dsonar.host.url=$SONAR_SERVER_URL -Dsonar.exclusions=$SONAR_EXCLUSIONS -Dsonar.login=$SONAR_LOGIN | tee out | grep -Eo 'http.*/api/ce/task.*')
 
 echo "Task result will be available at $TASK_URL. Polling started..."
 

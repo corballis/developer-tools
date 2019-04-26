@@ -10,9 +10,12 @@ commands:
             description: "The root of your maven project to determine your project key."
         sonar_server_url:
             type: string
-            description: "URL of your SonarQube server. e.g.: http://my.sonarqube,server:9001"
+            description: "URL of your SonarQube server. e.g.: http://my.sonarqube,server:9000"
         sonar_login:
             description: "Authentication key (sonar.login paramter) to access SonarQube and perform analysis"
+            type: string
+        sonar_exclusions:
+            description: "Files or folders can be specified here which will be excluded from the analysis (sonar.exclusions paramter). e.g: system/**, test/**, application/third_party/**, application/logs/**"
             type: string
     steps:
       - run:
@@ -23,4 +26,4 @@ commands:
       - run: 
             name: Execute SonarQube analysis
             command: |
-                . /home/circleci/developer-tools/quality-management/analyze.sh << parameters.maven_working_directory >> << parameters.sonar_server_url >> << parameters.sonar_login >>
+                . /home/circleci/developer-tools/quality-management/analyze.sh << parameters.maven_working_directory >> << parameters.sonar_server_url >> << parameters.sonar_login >> << parameters.sonar_exclusions >>
