@@ -11,6 +11,7 @@ SONAR_EXCLUSIONS=$4
 echo "Current directory: $1, SonarQube server: $SONAR_SERVER_URL, Exclusions: $SONAR_EXCLUSIONS"
 
 if [ -z "${PROJECT_KEY}" ]; then
+	echo "Generating project key..."
 	PROJECT_NAME=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.artifactId}' --non-recursive exec:exec 2>/dev/null)
 	BRANCH_NAME=$(git branch | grep \* | cut -d ' ' -f2)
 	PROJECT_KEY="$PROJECT_NAME:$BRANCH_NAME"
