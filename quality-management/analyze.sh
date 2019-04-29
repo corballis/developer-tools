@@ -27,7 +27,7 @@ echo "Task result will be available at $TASK_URL. Polling started..."
 CONNECT_RETRY=30
  
 counter=0
-while [ $(curl -s -u $SONAR_LOGIN: $TASK_URL 2>&1 | grep -q 'IN_PROGRESS'; echo $?) -eq 0 ]&&[ $counter -lt $CONNECT_RETRY ]; do
+while [ $(curl -s -u $SONAR_LOGIN: $TASK_URL 2>&1 | grep -q 'SUCCESS'; echo $?) -gt 0 ]&&[ $counter -lt $CONNECT_RETRY ]; do
   sleep 5
   ((counter++))
   echo "waiting for SonarQube task to be ready ($counter/$CONNECT_RETRY)"
@@ -49,7 +49,7 @@ echo "Verify Quality Gate results for analysis $ANALYSIS_ID ($ANALYSIS_URL)"
 
 if [[ $(curl -s -u $SONAR_LOGIN: $ANALYSIS_URL 2>&1 | grep "ERROR" | wc -l) -gt 0 ]]; then
 	echo "Quality Gate has been broken:"
-	curl -s $ANALYSIS_URL
+	curl -s -u $SONAR_LOGIN: $ANALYSIS_URL
 	exit 1
 fi
 
