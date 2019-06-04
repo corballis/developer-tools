@@ -13,7 +13,7 @@ commands:
     steps:
       - restore_cache:
             keys:
-                - intellij-idea-2018-3-5
+                - intellij-idea-2019-1-3
       - run:
             name: Download Corballis Developer Tools
             command: |
@@ -37,4 +37,4 @@ commands:
       - save_cache:
             paths:
                 - ~/intellij
-            key: intellij-idea-2018-3-5
+            key: intellij-idea-2019-1-3
