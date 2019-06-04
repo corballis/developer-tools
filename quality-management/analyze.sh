@@ -27,7 +27,8 @@ echo "Task result will be available at $TASK_URL. Polling started..."
 CONNECT_RETRY=30
  
 counter=0
-while [ $(curl -s -u $SONAR_LOGIN: $TASK_URL 2>&1 | grep 'analysisId' | wc -l) -gt 0 ]&&[ $counter -lt $CONNECT_RETRY ]; do
+echo "Started to query SonarQube"
+while [ $(curl -s -u $SONAR_LOGIN: $TASK_URL 2>&1 | grep 'analysisId' | wc -l) -lt 0 ]&&[ $counter -lt $CONNECT_RETRY ]; do
   sleep 5
   ((counter++))
   echo "waiting for SonarQube task to be ready ($counter/$CONNECT_RETRY)"
