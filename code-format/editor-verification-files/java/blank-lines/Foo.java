@@ -27,6 +27,7 @@ public class Foo {
     public class InnerClass {
 
     }
+
 }
 
 class AnotherClass {
@@ -41,4 +42,5 @@ interface TestInterface {
     void method1();
 
     void method2();
+
 }

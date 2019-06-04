@@ -53,5 +53,7 @@ public class Foo {
 
         public void bar() throws E1, E2 {
         }
+
     }
+
 }

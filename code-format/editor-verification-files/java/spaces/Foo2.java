@@ -40,6 +40,7 @@ public class Foo2<T extends Bar & Abba, U> {
             return;
         }
     }
+
 }
 
 class Bar {
@@ -47,6 +48,7 @@ class Bar {
     static <U, T> U mess(T t) {
         return null;
     }
+
 }
 
 interface Abba {

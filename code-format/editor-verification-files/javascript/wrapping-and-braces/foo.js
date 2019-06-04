@@ -1,70 +1,91 @@
 class Foo extends BarComponent, BazService, QuuxProvider {
 }
 
-import { Component } from 'react'
-import { Rx } from 'rxjs/Observable'
+import { Component } from 'react';
+import { Rx } from 'rxjs/Observable';
 
 import {
-  property1,
-  property2,
-  property3
-} from './myModule.js'
+  property1, property2, property3
+} from './myModule.js';
 
 function buzz() {
   return 0;
 }
 
-var x = 1, y = 2,
+var x = 1,
+  y = 2,
   foregroundColor = 'transparent',
   highlightColor = 'lime',
   font = 'Arial';
 /*
  Multiline
-   C-style
-     Comment
+ C-style
+ Comment
  */
-var myLink = { img: "btn.gif" },
+var myLink = {img: 'btn.gif'},
   local = true,
   initial = -1;
-width = 400
-height = 300
+width = 400;
+height = 300;
 
 var foo = {
-  numbers: ['one', 'two', 'three', 'four', 'five', 'six'],
+  numbers: [
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six'
+  ],
   data: {
     a: {
       id: 123,
-      type: "String",
+      type: 'String',
       isAvailable: true
     },
-    b: { id: 456, type: "Int" }
-  },
-// fBar : function (x,y);
-  fOne: function (a, b, c, d, e, f, g, h) {
+    b: {
+      id: 456,
+      type: 'Int'
+    }
+  }, // fBar : function (x,y);
+  fOne: function(a, b, c, d, e, f, g, h) {
     var x = a + b + c + d + e + f + g + h;
     fTwo(a, b, c, fThree(d, e, f, g, h));
     var z = a == 'Some string' ? 'yes' : 'no';
     z = a == 10 ? 'yes' : 'no';
-    var colors = ['red', 'green', 'blue', 'black', 'white', 'gray'];
-    for (j = 0; j < 2; j++) i = a;
-    for (var i = 0; i < colors.length; i++)
-         var colorString = this.numbers[i];
+    var colors = [
+      'red',
+      'green',
+      'blue',
+      'black',
+      'white',
+      'gray'
+    ];
+    for (j = 0; j < 2; j++) {
+      i = a;
+    }
+    for (var i = 0; i < colors.length; i++) {
+      var colorString = this.numbers[i];
+    }
   },
 
-  chainedCallSample: function (a, b, c, d, e, f) {
+  chainedCallSample: function(a, b, c, d, e, f) {
     chainRoot.firstCall(a, b, c, d, e, f, g).secondCall(a, b, c, d).thirdCall(a, b, c, d).fourthCall().q(a).r(a, b).s();
-    chainRoot.x().y()
-      .z();
+    chainRoot.x().y().z();
   },
-  callArgumentsSample: function () {
-    this.fTwo("one", "two", "three", "four");
+  callArgumentsSample: function() {
+    this.fTwo('one', 'two', 'three', 'four');
     this.fThree({
-      strA: 'a',
-      strB: 'b',
-      strC: 'c',
-      strD: 'd'
-    }, 'strE');
-    [1, 2, 3].reduce(function (previousValue, currentValue) {
+                  strA: 'a',
+                  strB: 'b',
+                  strC: 'c',
+                  strD: 'd'
+                }, 'strE');
+    [
+      1,
+      2,
+      3
+    ].reduce(function(previousValue, currentValue) {
       return previousValue + currentValue;
     }, 10);
   },
@@ -73,13 +94,16 @@ var foo = {
    * @param {string} a Parameter A description.
    * @param {string} b Parameter B description. Can extend beyond the right margin.
    */
-  fTwo: function (a, b, c, d) {
+  fTwo: function(a, b, c, d) {
     foo(a, b, c, d); // Line comment which can be wrapped if long.
-    if (true)
+    if (true) {
       return c;
+    }
     if (a == 'one' && (b == 'two' || c == 'three')) {
       return a + b + c + d;
-    } else return strD;
+    } else {
+      return strD;
+    }
     if (a == 'one') {
       return 1;
     } else if (a == 'two') {
@@ -95,20 +119,20 @@ var foo = {
     return d;
   },
 
-  fThree: function ({ strA, strB, strC, strD }, strE) {
-    var number = prompt("Enter a number:", 0);
+  fThree: function({strA, strB, strC, strD}, strE) {
+    var number = prompt('Enter a number:', 0);
     switch (number) {
       case 0 :
-        alert("Zero");
+        alert('Zero');
         break;
       case 1:
-        alert("One");
+        alert('One');
         break;
     }
     try {
       a[2] = 10;
     } catch (e) {
-      alert("Failure: " + e.message);
+      alert('Failure: ' + e.message);
     }
     return strA + strB + strC + strD + strE;
   }

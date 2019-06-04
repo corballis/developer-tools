@@ -21,7 +21,7 @@ public class ThisIsASampleClass extends C1 implements I1, I2, I3, I4, I5 {
         int x = (3 + 4 + 5 + 6) * (7 + 8 + 9 + 10) * (11 + 12 + 13 + 14 + 0xFFFFFFFF);
         String s1, s2, s3;
         s1 = s2 = s3 = "012345678901456";
-        assert i + j + k + l + n + m <= 2 : "assert description";
+        assert i +j + k + l + n + m <= 2 :"assert description";
         int y = 2 > 3 ? 7 + 8 + 9 : 11 + 12 + 13;
         super.getFoo().foo().getBar().bar();
 
@@ -68,8 +68,7 @@ public class ThisIsASampleClass extends C1 implements I1, I2, I3, I4, I5 {
 
     public static void test() throws Exception {
         foo.foo().bar("arg1", "arg2");
-        new Object() {
-        };
+        new Object() {};
     }
 
     class TestInnerClass {
@@ -79,13 +78,14 @@ public class ThisIsASampleClass extends C1 implements I1, I2, I3, I4, I5 {
     interface TestInnerInterface {
 
     }
+
 }
 
-enum Breed {
-    Dalmatian(),
-    Labrador(),
-    Dachshund()
-}
+    enum Breed {
+                   Dalmatian(),
+                   Labrador(),
+                   Dachshund()
+                   }
 
 @Annotation1
 @Annotation2
@@ -105,4 +105,5 @@ class Foo {
     public void method(@Annotation1 @Annotation3(param1 = "value1", param2 = "value2") final int param) {
         @Annotation1 @Annotation3(param1 = "value1", param2 = "value2") final int localVariable;
     }
+
 }
