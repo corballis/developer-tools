@@ -1,6 +1,4 @@
 <code_scheme name="Greencode - Infinity" version="173">
-  <option name="HTML_SPACE_INSIDE_EMPTY_TAG" value="true" />
-  <option name="HTML_DO_NOT_INDENT_CHILDREN_OF" value="" />
   <HTMLCodeStyleSettings>
     <option name="HTML_ATTRIBUTE_WRAP" value="2" />
     <option name="HTML_ELEMENTS_TO_INSERT_NEW_LINE_BEFORE" value="body,p,h1,h2,h3,div,form" />
@@ -434,7 +432,7 @@
     <option name="TERNARY_OPERATION_WRAP" value="5" />
     <option name="KEEP_SIMPLE_BLOCKS_IN_ONE_LINE" value="true" />
     <option name="FOR_STATEMENT_WRAP" value="5" />
-    <option name="ARRAY_INITIALIZER_WRAP" value="5" />
+    <option name="ARRAY_INITIALIZER_WRAP" value="2" />
     <option name="ARRAY_INITIALIZER_LBRACE_ON_NEXT_LINE" value="true" />
     <option name="ARRAY_INITIALIZER_RBRACE_ON_NEXT_LINE" value="true" />
     <option name="WRAP_COMMENTS" value="true" />
