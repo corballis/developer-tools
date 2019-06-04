@@ -26,10 +26,11 @@ jobs:
  - Clone developer-tools project: ```git clone git@github.com:corballis/developer-tools.git```
  - In ```code-format``` folder open ```init-variables.sh``` for edit
  - Change ```INTELLIJ_VERSION``` and ```INTELLIJ_CONFIG_FOLDER``` varibales according to your current IntelliJ settings.
+ - Update the cache keys in ```code-formatter.orb.yml``` to the new IntelliJ version 
  - In order to publish the new ORB version to the registry you need to use CicleCi CLI.
     - CLI only works on Linux environment. If you are using Windows the best option is to use CircleCi's docker image.
     - In code-format folder execute the command below (from git bash) after you have made the following changes:
-        - Replace ```[VERSION]``` to the current IntelliJ version. e.g: 2018.3.5 (use the same as you used earlier in ```INTELLIJ_VERSION``` variable)
+        - Replace the ```[VERSION]``` placeholder in the command with the current IntelliJ version. e.g: 2018.3.5 (use the same as you used earlier in ```INTELLIJ_VERSION``` variable)
         - Replace ```[YOUR_TOKEN_COMES_HERE]``` to your developer token. [Get your token here.](https://circleci.com/account/api)
 ```sh
 docker run --rm -v $(pwd):/data circleci/circleci-cli:alpine orb publish /data/code-formatter.orb.yml corballis/intellij-code-format@[VERSION] --token [YOUR_TOKEN_COMES_HERE]
