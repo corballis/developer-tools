@@ -27,14 +27,15 @@ counter=0
 echo "Task result will be available at $TASK_URL. Polling started..."
 while [ -z ${SONAR_TASK_READY} ]; do
   echo "Waiting for SonarQube task to be ready ($counter/$CONNECT_RETRY)"
-  if [ "$(curl --silent -u $SONAR_LOGIN: $TASK_URL 2>&1 | grep -q 'analysisId'; echo $?)" = 0 ]; then
+  if [[ "$(curl --silent -u $SONAR_LOGIN: $TASK_URL 2>&1 | grep -q 'analysisId'; echo $?)" = 0 ]]; then
       SONAR_TASK_READY=true;
   fi
-  if [ ${counter} -eq ${CONNECT_RETRY} ]; then
+  echo "Still not ready. Retrying..."
+  if [[ ${counter} -eq ${CONNECT_RETRY} ]]; then
     echo "Max attempts reached"
     exit 1
   fi
-  ((counter++))
+  counter=$((counter+1))
   sleep 2
 done
 
