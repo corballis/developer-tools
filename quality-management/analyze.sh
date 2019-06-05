@@ -22,17 +22,20 @@ echo "SonarQube will analyze this project with the following key: $PROJECT_KEY"
 echo "Waiting for SonarQube task to start (might take a while....)"
 TASK_URL=$(mvn compile -DskipTests sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.projectName=$PROJECT_KEY -Dsonar.host.url=$SONAR_SERVER_URL -Dsonar.exclusions=$SONAR_EXCLUSIONS -Dsonar.login=$SONAR_LOGIN | tee out | grep -Eo 'http.*/api/ce/task.*')
 
-echo "Task result will be available at $TASK_URL. Polling started..."
-
 CONNECT_RETRY=30
- 
 counter=0
-echo "Started to query SonarQube"
-while [[ $(curl -s -u $SONAR_LOGIN: $TASK_URL 2>&1 | grep 'analysisId' | wc -l) -lt 0 && $counter -lt $CONNECT_RETRY ]] 
-do
-  sleep 5
+echo "Task result will be available at $TASK_URL. Polling started..."
+while [ -z ${SONAR_TASK_READY} ]; do
+  echo "Waiting for SonarQube task to be ready ($counter/$CONNECT_RETRY)"
+  if [ "$(curl --silent -u $SONAR_LOGIN: $TASK_URL 2>&1 | grep -q 'analysisId'; echo $?)" = 0 ]; then
+      SONAR_TASK_READY=true;
+  fi
+  if [ ${counter} -eq ${CONNECT_RETRY} ]; then
+    echo "Max attempts reached"
+    exit 1
+  fi
   ((counter++))
-  echo "waiting for SonarQube task to be ready ($counter/$CONNECT_RETRY)"
+  sleep 2
 done
 
 echo "Task result: "
