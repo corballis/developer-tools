@@ -17,6 +17,7 @@ commands:
           default: "$CIRCLE_WORKING_DIRECTORY"
     steps:
       - restore_cache:
+            name: "Restore IntelliJ $INTELLIJ_VERSION"
             keys:
                 - intellij-idea-2019-1-3
       - run:
@@ -40,6 +41,7 @@ commands:
                 . /home/circleci/developer-tools/code-format/init-variables.sh
                 . /home/circleci/developer-tools/code-format/verify-code-format.sh << parameters.folders >> $CIRCLE_WORKING_DIRECTORY
       - save_cache:
+            name: "Save IntelliJ $INTELLIJ_VERSION"
             paths:
                 - ~/intellij
             key: intellij-idea-2019-1-3
