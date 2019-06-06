@@ -29,6 +29,7 @@ services:
     environment:
       - POSTGRES_USER=$SONAR_POSTGRES_USER
       - POSTGRES_PASSWORD=$SONAR_POSTGRES_PASSWORD
+    restart: always
     volumes:
       - postgresql:/var/lib/postgresql
       - postgresql_data:/var/lib/postgresql/data

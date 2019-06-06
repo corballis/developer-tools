@@ -10,8 +10,14 @@ INTELLIJ_LICENSE_KEY_URL: https://path.to/yourlicensefile"
 commands:
   verify-code-format:
     description: Verifies proper code formatting
+    parameters:
+      folders:
+          description: "Space separated folder patterns. The scope of the verification can be specified. It's useful when you want to exclude some directories. You can add your white list here."
+          type: string
+          default: "$CIRCLE_WORKING_DIRECTORY"
     steps:
       - restore_cache:
+            name: "Restore IntelliJ $INTELLIJ_VERSION"
             keys:
                 - intellij-idea-2019-1-3
       - run:
@@ -33,8 +39,9 @@ commands:
             name: Verify checked in code format
             command: |
                 . /home/circleci/developer-tools/code-format/init-variables.sh
-                . /home/circleci/developer-tools/code-format/verify-code-format.sh $CIRCLE_WORKING_DIRECTORY $CIRCLE_WORKING_DIRECTORY
+                . /home/circleci/developer-tools/code-format/verify-code-format.sh << parameters.folders >> $CIRCLE_WORKING_DIRECTORY
       - save_cache:
+            name: "Save IntelliJ $INTELLIJ_VERSION"
             paths:
                 - ~/intellij
             key: intellij-idea-2019-1-3
