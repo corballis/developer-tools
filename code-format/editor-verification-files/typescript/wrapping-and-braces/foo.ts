@@ -70,8 +70,16 @@ var foo = {
   },
 
   chainedCallSample: function(a, b, c, d, e, f) {
-    chainRoot.firstCall(a, b, c, d, e, f, g).secondCall(a, b, c, d).thirdCall(a, b, c, d).fourthCall().q(a).r(a, b).s();
-    chainRoot.x().y().z();
+    chainRoot.firstCall(a, b, c, d, e, f, g)
+             .secondCall(a, b, c, d)
+             .thirdCall(a, b, c, d)
+             .fourthCall()
+             .q(a)
+             .r(a, b)
+             .s();
+    chainRoot.x()
+             .y()
+             .z();
   },
   callArgumentsSample: function() {
     this.fTwo('one', 'two', 'three', 'four');
