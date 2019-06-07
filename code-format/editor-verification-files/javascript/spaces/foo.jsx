@@ -2,8 +2,7 @@ import { Component } from 'react';
 
 export class Greeter {
   greetNTimes(to, {from, times}) {
-    return range(times)
-    .map(item => this.greet(to, from));
+    return range(times).map(item => this.greet(to, from));
   }
 }
 

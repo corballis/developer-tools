@@ -5,6 +5,5 @@ foo('demo', {
   object.firstCall({
                      a: 'a',
                      b: 'b'
-                   })
-        .secondCall();
+                   }).secondCall();
 });
