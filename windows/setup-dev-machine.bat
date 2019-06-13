@@ -38,6 +38,7 @@ choco install toggl
 choco install maven
 choco install winrar
 choco install wireshark
+choco install mysql.workbench
 
 echo .
 pause
