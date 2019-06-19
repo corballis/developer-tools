@@ -4,7 +4,7 @@
 version: 2.1
 
 orbs:
-  sonarqube-analyzer: corballis/sonarqube-analyzer@0.1.0
+  sonarqube-analyzer: corballis/sonarqube-analyzer@0.1.1
 
 jobs:
   build:
