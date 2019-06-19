@@ -20,6 +20,10 @@ commands:
             description: "Files or folders can be specified here which will be excluded from the analysis (sonar.exclusions paramter). e.g: system/**, test/**, application/third_party/**, application/logs/**"
             type: string
             default: ""
+        sonar_project_dir:
+            description: "The base directory where the project files are placed. The analysis will be executed on the files in this directory."
+            type: string
+            default: "$CIRCLE_WORKING_DIRECTORY"
     steps:
       - run:
             name: Download Corballis Developer Tools
@@ -29,4 +33,4 @@ commands:
       - run: 
             name: Execute SonarQube analysis
             command: |
-                . /home/circleci/developer-tools/quality-management/analyze.sh << parameters.maven_working_directory >> << parameters.sonar_server_url >> << parameters.sonar_login >> << parameters.sonar_exclusions >>
+                . /home/circleci/developer-tools/quality-management/analyze.sh << parameters.maven_working_directory >> << parameters.sonar_server_url >> << parameters.sonar_login >> << parameters.sonar_exclusions >> << parameters.sonar_project_dir >>

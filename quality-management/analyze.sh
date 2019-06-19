@@ -7,8 +7,9 @@ cd $1
 SONAR_SERVER_URL=$2
 SONAR_LOGIN=$3
 SONAR_EXCLUSIONS=$4
+SONAR_PROJECT_DIR=$5
 
-echo "Current directory: $1, SonarQube server: $SONAR_SERVER_URL, Sonar token: $SONAR_LOGIN, Exclusions: $SONAR_EXCLUSIONS"
+echo "Current directory: $1, SonarQube server: $SONAR_SERVER_URL, Sonar token: $SONAR_LOGIN, Exclusions: $SONAR_EXCLUSIONS, Base dir: $SONAR_PROJECT_DIR"
 
 if [ -z "${PROJECT_KEY}" ]; then
 	echo "Generating project key..."
@@ -20,7 +21,7 @@ fi
 echo "SonarQube will analyze this project with the following key: $PROJECT_KEY"
 
 echo "Waiting for SonarQube task to start (might take a while....)"
-TASK_URL=$(mvn compile -DskipTests sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.projectName=$PROJECT_KEY -Dsonar.host.url=$SONAR_SERVER_URL -Dsonar.exclusions=$SONAR_EXCLUSIONS -Dsonar.login=$SONAR_LOGIN | tee out | grep -Eo 'http.*/api/ce/task.*')
+TASK_URL=$(mvn compile -DskipTests sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.projectName=$PROJECT_KEY -sonar.projectBaseDir=$SONAR_PROJECT_DIR -Dsonar.host.url=$SONAR_SERVER_URL -Dsonar.exclusions=$SONAR_EXCLUSIONS -Dsonar.login=$SONAR_LOGIN | tee out | grep -Eo 'http.*/api/ce/task.*')
 
 CONNECT_RETRY=30
 counter=0
