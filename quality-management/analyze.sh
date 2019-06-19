@@ -21,7 +21,7 @@ fi
 echo "SonarQube will analyze this project with the following key: $PROJECT_KEY"
 
 echo "Waiting for SonarQube task to start (might take a while....)"
-TASK_URL=$(mvn compile -DskipTests sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.projectName=$PROJECT_KEY -sonar.projectBaseDir=$SONAR_PROJECT_DIR -Dsonar.host.url=$SONAR_SERVER_URL -Dsonar.exclusions=$SONAR_EXCLUSIONS -Dsonar.login=$SONAR_LOGIN | tee out | grep -Eo 'http.*/api/ce/task.*')
+TASK_URL=$(mvn compile -DskipTests sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.projectName=$PROJECT_KEY -Dsonar.projectBaseDir=$SONAR_PROJECT_DIR -Dsonar.host.url=$SONAR_SERVER_URL -Dsonar.exclusions=$SONAR_EXCLUSIONS -Dsonar.login=$SONAR_LOGIN | tee out | grep -Eo 'http.*/api/ce/task.*')
 
 CONNECT_RETRY=30
 counter=0
