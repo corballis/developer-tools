@@ -33,4 +33,4 @@ commands:
       - run: 
             name: Execute SonarQube analysis
             command: |
-                . /home/circleci/developer-tools/quality-management/analyze.sh << parameters.maven_working_directory >> << parameters.sonar_server_url >> << parameters.sonar_login >> << parameters.sonar_exclusions >> << parameters.sonar_project_dir >>
+                . /home/circleci/developer-tools/quality-management/analyze.sh << parameters.maven_working_directory >> << parameters.sonar_server_url >> << parameters.sonar_login >> << parameters.sonar_project_dir >> << parameters.sonar_exclusions >>

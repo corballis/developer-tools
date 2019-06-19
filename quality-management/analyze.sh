@@ -6,10 +6,10 @@ cd $1
 
 SONAR_SERVER_URL=$2
 SONAR_LOGIN=$3
-SONAR_EXCLUSIONS=$4
-SONAR_PROJECT_DIR=$5
+SONAR_PROJECT_DIR=$4
+SONAR_EXCLUSIONS=$5
 
-echo "Current directory: $1, SonarQube server: $SONAR_SERVER_URL, Sonar token: $SONAR_LOGIN, Exclusions: $SONAR_EXCLUSIONS, Base dir: $SONAR_PROJECT_DIR"
+echo "Current directory: $1, SonarQube server: $SONAR_SERVER_URL, Sonar token: $SONAR_LOGIN, Base dir: $SONAR_PROJECT_DIR, Exclusions: $SONAR_EXCLUSIONS"
 
 if [ -z "${PROJECT_KEY}" ]; then
 	echo "Generating project key..."
