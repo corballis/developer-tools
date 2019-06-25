@@ -20,8 +20,45 @@ fi
 
 echo "SonarQube will analyze this project with the following key: $PROJECT_KEY"
 
+SONAR_SCANNER_VERSION=3.3.0.1492
+
+echo "Downloading Sonar Scanner SONAR_SCANNER_VERSION"
+
+set -x &&\
+curl --insecure -o ~/sonarscanner.zip -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip &&\
+unzip ~/sonarscanner.zip &&\
+rm ~/sonarscanner.zip &&\
+rm ~/sonar-scanner-$SONAR_SCANNER_VERSION-linux/jre -rf &&\
+#   ensure Sonar uses the provided Java for musl instead of a borked glibc one
+sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' ~/sonar-scanner-$SONAR_SCANNER_VERSION-linux/bin/sonar-scanner
+
+SONAR_RUNNER_HOME=~/sonar-scanner-$SONAR_SCANNER_VERSION-linux
+
+echo "Looking for binaries in all maven modules..."
+BINARIES=""
+for i in $(find . -name pom.xml); do
+    level=$(mvn help:evaluate -f $i -Dexpression=project.build.directory -q -DforceStdout)
+    level=$(readlink -f $level)
+	[[ -z "$BINARIES" ]] && BINARIES="$level" || BINARIES="$BINARIES,$level"
+done
+echo "Scan will be executed on the following java binaries: $BINARIES"
+
+LIBRARIES_LOCATION=$(mvn -q exec:exec -Dexec.executable=echo -Dexec.args="%classpath" | sed 's/;/,/g')
+
+echo "Location of the binaries $BINARIES"
+
+TASK_URL=$(. $SONAR_RUNNER_HOME/bin/sonar-scanner -D sonar.projectKey=$PROJECT_KEY \
+ -D sonar.projectName=$PROJECT_KEY \
+ -D sonar.projectBaseDir=$SONAR_PROJECT_DIR \
+ -D sonar.host.url=$SONAR_SERVER_URL \
+ -D sonar.login=$SONAR_LOGIN \
+ -D sonar.java.binaries=$BINARIES \
+ -D sonar.java.libraries=$LIBRARIES_LOCATION \
+ -D sonar.java.test.libraries=$LIBRARIES_LOCATION \
+ -D sonar.exclusions=$SONAR_EXCLUSIONS | tee out | grep -Eo 'http.*/api/ce/task.*')
+
 echo "Waiting for SonarQube task to start (might take a while....)"
-TASK_URL=$(mvn compile -DskipTests sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.projectName=$PROJECT_KEY -Dsonar.projectBaseDir=$SONAR_PROJECT_DIR -Dsonar.host.url=$SONAR_SERVER_URL -Dsonar.exclusions=$SONAR_EXCLUSIONS -Dsonar.login=$SONAR_LOGIN | tee out | grep -Eo 'http.*/api/ce/task.*')
+#TASK_URL=$(mvn compile -DskipTests sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.projectName=$PROJECT_KEY -Dsonar.projectBaseDir=$SONAR_PROJECT_DIR -Dsonar.host.url=$SONAR_SERVER_URL -Dsonar.exclusions=$SONAR_EXCLUSIONS -Dsonar.login=$SONAR_LOGIN | tee out | grep -Eo 'http.*/api/ce/task.*')
 
 CONNECT_RETRY=30
 counter=0
