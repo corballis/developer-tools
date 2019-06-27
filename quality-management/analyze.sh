@@ -28,9 +28,12 @@ set -x &&\
 curl --insecure -o ~/sonarscanner.zip -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip &&\
 unzip ~/sonarscanner.zip ~/ &&\
 #   ensure Sonar uses the provided Java for musl instead of a borked glibc one
-sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' ~/sonar-scanner-$SONAR_SCANNER_VERSION-linux/bin/sonar-scanner
+sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' ~/sonar-scanner-$SONAR_SCANNER_VERSION-linux/bin/sonar-scanner &&\
+set +x
 
 SONAR_RUNNER_HOME=~/sonar-scanner-$SONAR_SCANNER_VERSION-linux
+
+ls $SONAR_RUNNER_HOME
 
 echo "Looking for binaries in all maven modules..."
 BINARIES=""
@@ -45,6 +48,8 @@ LIBRARIES_LOCATION=$(mvn -q exec:exec -Dexec.executable=echo -Dexec.args="%class
 
 echo "Location of the binaries $BINARIES"
 
+echo "Waiting for SonarQube task to start (might take a while....)"
+
 TASK_URL=$(. $SONAR_RUNNER_HOME/bin/sonar-scanner -D sonar.projectKey=$PROJECT_KEY \
  -D sonar.projectName=$PROJECT_KEY \
  -D sonar.projectBaseDir=$SONAR_PROJECT_DIR \
@@ -55,7 +60,6 @@ TASK_URL=$(. $SONAR_RUNNER_HOME/bin/sonar-scanner -D sonar.projectKey=$PROJECT_K
  -D sonar.java.test.libraries=$LIBRARIES_LOCATION \
  -D sonar.exclusions=$SONAR_EXCLUSIONS | tee out | grep -Eo 'http.*/api/ce/task.*')
 
-echo "Waiting for SonarQube task to start (might take a while....)"
 #TASK_URL=$(mvn compile -DskipTests sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.projectName=$PROJECT_KEY -Dsonar.projectBaseDir=$SONAR_PROJECT_DIR -Dsonar.host.url=$SONAR_SERVER_URL -Dsonar.exclusions=$SONAR_EXCLUSIONS -Dsonar.login=$SONAR_LOGIN | tee out | grep -Eo 'http.*/api/ce/task.*')
 
 CONNECT_RETRY=30
