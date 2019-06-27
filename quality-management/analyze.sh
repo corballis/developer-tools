@@ -48,7 +48,7 @@ echo "Location of the binaries $BINARIES"
 
 echo "Waiting for SonarQube task to start (might take a while....)"
 
-TASK_URL=$(.sonar-scanner -D sonar.projectKey=$PROJECT_KEY \
+TASK_URL=$(sonar-scanner -D sonar.projectKey=$PROJECT_KEY \
  -D sonar.projectName=$PROJECT_KEY \
  -D sonar.projectBaseDir=$SONAR_PROJECT_DIR \
  -D sonar.host.url=$SONAR_SERVER_URL \
