@@ -31,6 +31,7 @@ unzip -d ~/ ~/sonarscanner.zip &&\
 sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' ~/sonar-scanner-$SONAR_SCANNER_VERSION-linux/bin/sonar-scanner
 
 SONAR_RUNNER_HOME=~/sonar-scanner-$SONAR_SCANNER_VERSION-linux
+PATH="$SONAR_RUNNER_HOME/bin${PATH:+:${PATH}}"
 
 echo "Looking for binaries in all maven modules..."
 BINARIES=""
@@ -47,7 +48,7 @@ echo "Location of the binaries $BINARIES"
 
 echo "Waiting for SonarQube task to start (might take a while....)"
 
-TASK_URL=$(. $SONAR_RUNNER_HOME/bin/sonar-scanner -D sonar.projectKey=$PROJECT_KEY \
+TASK_URL=$(.sonar-scanner -D sonar.projectKey=$PROJECT_KEY \
  -D sonar.projectName=$PROJECT_KEY \
  -D sonar.projectBaseDir=$SONAR_PROJECT_DIR \
  -D sonar.host.url=$SONAR_SERVER_URL \
