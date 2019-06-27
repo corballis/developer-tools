@@ -38,7 +38,7 @@ BINARIES=""
 for i in $(find . -name pom.xml); do
     level=$(mvn help:evaluate -f $i -Dexpression=project.build.directory -q -DforceStdout)
     level=$(readlink -f $level)
-	[[ -z "$BINARIES" ]] && BINARIES="$level" || BINARIES="$BINARIES,$level"
+	[[ -z "$BINARIES" || ! -d "$level" ]] && BINARIES="$level" || BINARIES="$BINARIES,$level"
 done
 echo "Scan will be executed on the following java binaries: $BINARIES"
 
