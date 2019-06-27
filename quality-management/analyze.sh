@@ -28,12 +28,9 @@ set -x &&\
 curl --insecure -o ~/sonarscanner.zip -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip &&\
 unzip -d ~/ ~/sonarscanner.zip &&\
 #   ensure Sonar uses the provided Java for musl instead of a borked glibc one
-sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' ~/sonar-scanner-$SONAR_SCANNER_VERSION-linux/bin/sonar-scanner &&\
-set +x
+sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' ~/sonar-scanner-$SONAR_SCANNER_VERSION-linux/bin/sonar-scanner
 
 SONAR_RUNNER_HOME=~/sonar-scanner-$SONAR_SCANNER_VERSION-linux
-
-ls $SONAR_RUNNER_HOME
 
 echo "Looking for binaries in all maven modules..."
 BINARIES=""
@@ -44,7 +41,7 @@ for i in $(find . -name pom.xml); do
 done
 echo "Scan will be executed on the following java binaries: $BINARIES"
 
-LIBRARIES_LOCATION=$(mvn -q exec:exec -Dexec.executable=echo -Dexec.args="%classpath" | sed 's/;/,/g')
+LIBRARIES_LOCATION=$(mvn -q exec:exec -Dexec.executable=echo -Dexec.args="%classpath" | sed 's/:/,/g')
 
 echo "Location of the binaries $BINARIES"
 
