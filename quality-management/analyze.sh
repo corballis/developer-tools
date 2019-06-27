@@ -27,8 +27,6 @@ echo "Downloading Sonar Scanner SONAR_SCANNER_VERSION"
 set -x &&\
 curl --insecure -o ~/sonarscanner.zip -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip &&\
 unzip ~/sonarscanner.zip &&\
-rm ~/sonarscanner.zip &&\
-rm ~/sonar-scanner-$SONAR_SCANNER_VERSION-linux/jre -rf &&\
 #   ensure Sonar uses the provided Java for musl instead of a borked glibc one
 sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' ~/sonar-scanner-$SONAR_SCANNER_VERSION-linux/bin/sonar-scanner
 
