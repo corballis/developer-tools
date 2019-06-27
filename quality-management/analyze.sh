@@ -49,14 +49,14 @@ echo "Location of the binaries $BINARIES"
 echo "Waiting for SonarQube task to start (might take a while....)"
 
 TASK_URL=$(sonar-scanner -D sonar.projectKey=$PROJECT_KEY \
- -D sonar.projectName=$PROJECT_KEY \
- -D sonar.projectBaseDir=$SONAR_PROJECT_DIR \
- -D sonar.host.url=$SONAR_SERVER_URL \
- -D sonar.login=$SONAR_LOGIN \
- -D sonar.java.binaries=$BINARIES \
- -D sonar.java.libraries=$LIBRARIES_LOCATION \
- -D sonar.java.test.libraries=$LIBRARIES_LOCATION \
- -D sonar.exclusions=$SONAR_EXCLUSIONS | tee out | grep -Eo 'http.*/api/ce/task.*')
+ -Dsonar.projectName=$PROJECT_KEY \
+ -Dsonar.projectBaseDir=$SONAR_PROJECT_DIR \
+ -Dsonar.host.url=$SONAR_SERVER_URL \
+ -Dsonar.login=$SONAR_LOGIN \
+ -Dsonar.java.binaries=$BINARIES \
+ -Dsonar.java.libraries="$LIBRARIES_LOCATION" \
+ -Dsonar.java.test.libraries="$LIBRARIES_LOCATION" \
+ -Dsonar.exclusions=$SONAR_EXCLUSIONS | tee out | grep -Eo 'http.*/api/ce/task.*')
 
 #TASK_URL=$(mvn compile -DskipTests sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.projectName=$PROJECT_KEY -Dsonar.projectBaseDir=$SONAR_PROJECT_DIR -Dsonar.host.url=$SONAR_SERVER_URL -Dsonar.exclusions=$SONAR_EXCLUSIONS -Dsonar.login=$SONAR_LOGIN | tee out | grep -Eo 'http.*/api/ce/task.*')
 
