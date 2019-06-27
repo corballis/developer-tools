@@ -47,20 +47,6 @@ for i in $(find . -name pom.xml); do
 done
 echo "Scan will be executed on the following java binaries: $BINARIES"
 
-LIBRARIES_LOCATION=$(mvn -q exec:exec -Dexec.executable=echo -Dexec.args="%classpath" | sed 's/:/,/g')
-
-CLEAN_LIBRARIES_LOCATION=""
-while IFS=',' read -ra ADDR; do
-  for item in "${ADDR[@]}"; do
-    if [[ -d "$item"  || -f "$item" ]]
-    then
-      [[ -z "$CLEAN_LIBRARIES_LOCATION" ]] && CLEAN_LIBRARIES_LOCATION="$item" || CLEAN_LIBRARIES_LOCATION="$CLEAN_LIBRARIES_LOCATION,$item"
-    fi
-  done
-done <<< "$LIBRARIES_LOCATION"
-
-echo "Location of the binaries $BINARIES"
-
 echo "Waiting for SonarQube task to start (might take a while....)"
 
 TASK_URL=$(sonar-scanner -D sonar.projectKey=$PROJECT_KEY \
@@ -69,8 +55,8 @@ TASK_URL=$(sonar-scanner -D sonar.projectKey=$PROJECT_KEY \
  -Dsonar.host.url=$SONAR_SERVER_URL \
  -Dsonar.login=$SONAR_LOGIN \
  -Dsonar.java.binaries=$BINARIES \
- -Dsonar.java.libraries="$CLEAN_LIBRARIES_LOCATION" \
- -Dsonar.java.test.libraries="$CLEAN_LIBRARIES_LOCATION" \
+ -Dsonar.java.libraries="$HOME/.m2/**/*.jar" \
+ -Dsonar.java.test.libraries="$HOME/.m2/**/*.jar" \
  -Dsonar.exclusions=$SONAR_EXCLUSIONS | tee out | grep -Eo 'http.*/api/ce/task.*')
 
 #TASK_URL=$(mvn compile -DskipTests sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.projectName=$PROJECT_KEY -Dsonar.projectBaseDir=$SONAR_PROJECT_DIR -Dsonar.host.url=$SONAR_SERVER_URL -Dsonar.exclusions=$SONAR_EXCLUSIONS -Dsonar.login=$SONAR_LOGIN | tee out | grep -Eo 'http.*/api/ce/task.*')
