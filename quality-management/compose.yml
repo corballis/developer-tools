@@ -9,7 +9,7 @@ services:
     networks:
       - sonarnet
     environment:
-      - sonar.jdbc.url=jdbc:postgresql://db:5432/$SONAR_POSTGRES_USER
+      - sonar.jdbc.url=jdbc:postgresql://db:5431/$SONAR_POSTGRES_USER
       - sonar.jdbc.username=$SONAR_POSTGRES_USER
       - sonar.jdbc.password=$SONAR_POSTGRES_PASSWORD
     volumes:
@@ -23,7 +23,7 @@ services:
   db:
     image: postgres:11.2-alpine
     ports:
-      - "5432:5432"
+      - "5431:5432"
     networks:
       - sonarnet
     environment:
