@@ -21,5 +21,6 @@ cp -r /home/circleci/developer-tools/intellij-config/* $INTELLIJ_CONFIG_FOLDER
 
 echo "Configure IntelliJ license file"
 sudo curl -L "${INTELLIJ_LICENSE_KEY_URL}" --output "${INTELLIJ_CONFIG_FOLDER}/idea.key"
+sudo chmod 777 "${INTELLIJ_CONFIG_FOLDER}/idea.key"
 
 echo "IntelliJ is ready to use"
