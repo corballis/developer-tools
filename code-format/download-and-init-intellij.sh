@@ -3,7 +3,7 @@
 set -e
 
 # Set the following environment varibales with the proper values before execute this script.
-# INTELLIJ_VERSION: 2018.3.5
+# INTELLIJ_VERSION: 2019.3.3
 # INTELLIJ_CONFIG_FOLDER: /home/user/.IntelliJIdea2018.3/config
 # INTELLIJ_LICENSE_KEY_URL: https://pathtoyour.license
 
