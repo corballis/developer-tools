@@ -46,7 +46,7 @@ function foo(x, y, z) {
   ];
   var foo = function() {
   };
-  var asyncFoo = async(x, y, z) => {
+  var asyncFoo = async (x, y, z) => {
   };
   var v = x.map(s => s.length);
   if (!i > 10) {
