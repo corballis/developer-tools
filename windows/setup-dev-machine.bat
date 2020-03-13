@@ -39,6 +39,7 @@ choco install maven
 choco install winrar
 choco install wireshark
 choco install mysql.workbench
+choco install mremoteng
 
 echo .
 pause
