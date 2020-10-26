@@ -17,6 +17,7 @@ echo "Checking that the formatted files are unchanged"
 if [[ $(git status | grep "modified:" | wc -l) -gt 0 ]]; then
 	echo "The code format of the following files have been changed:"
 	git status
+	git diff
 	exit 1
 fi
 
