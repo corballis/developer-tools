@@ -19,7 +19,7 @@ echo "Setting up development configuration"
 mkdir -p "${INTELLIJ_CONFIG_FOLDER}"
 cp -r /home/circleci/developer-tools/intellij-config/* $INTELLIJ_CONFIG_FOLDER
 
-echo "Configure IntelliJ license file"
+echo "Configure IntelliJ license file from ${INTELLIJ_LICENSE_KEY_URL}"
 sudo curl -L "${INTELLIJ_LICENSE_KEY_URL}" --output "${INTELLIJ_CONFIG_FOLDER}/idea.key"
 sudo chmod 777 "${INTELLIJ_CONFIG_FOLDER}/idea.key"
 
