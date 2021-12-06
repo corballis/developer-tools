@@ -27,8 +27,8 @@ class Foo {
 }
 
 interface IFoo {
-  field: number
-  field2: number
+  field: number;
+  field2: number;
 
   foo(): void;
 }

@@ -119,7 +119,12 @@ var foo = {
     return d;
   },
 
-  fThree: function({strA, strB, strC, strD}, strE) {
+  fThree: function({
+                     strA,
+                     strB,
+                     strC,
+                     strD
+                   }, strE) {
     var number = prompt('Enter a number:', 0);
     switch (number) {
       case 0 :
