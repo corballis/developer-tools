@@ -6,6 +6,7 @@ set -e
 # INTELLIJ_VERSION: 2019.3.3
 # INTELLIJ_CONFIG_FOLDER: /home/user/.IntelliJIdea2018.3/config
 # INTELLIJ_LICENSE_KEY_URL: https://pathtoyour.license
+# WORKING_DIRECTORY: /home/circleci
 
 
 if [[ ! -d "/home/circleci/intellij" ]]; then
@@ -17,7 +18,7 @@ fi
 
 echo "Setting up development configuration"
 mkdir -p "${INTELLIJ_CONFIG_FOLDER}"
-cp -r /home/circleci/developer-tools/intellij-config/* $INTELLIJ_CONFIG_FOLDER
+cp -r ${WORKING_DIRECTORY}/developer-tools/intellij-config/* $INTELLIJ_CONFIG_FOLDER
 
 echo "Configure IntelliJ license file from ${INTELLIJ_LICENSE_KEY_URL}"
 sudo curl -L "${INTELLIJ_LICENSE_KEY_URL}" --output "${INTELLIJ_CONFIG_FOLDER}/idea.key"
