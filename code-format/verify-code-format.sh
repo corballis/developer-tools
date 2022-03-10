@@ -10,7 +10,7 @@
 echo "Verify IntelliJ code format"
 
 cd ~/intellij/*
-./bin/format.sh -r $1 -m "*.java|*.ts|*.js|*.html|*.css|*.json" -s /home/circleci/developer-tools/intellij-config/codestyles/Greencode.xml
+./bin/format.sh -r $1 -m "*.java|*.ts|*.js|*.html|*.css|*.json" -s ${WORKING_DIRECTORY}/developer-tools/intellij-config/codestyles/Greencode.xml
 cd $2
 
 echo "Checking that the formatted files are unchanged"
