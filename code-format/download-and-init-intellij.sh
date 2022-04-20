@@ -23,7 +23,5 @@ cp -r ${WORKING_DIRECTORY}/developer-tools/intellij-config/* $INTELLIJ_CONFIG_FO
 echo "Configure IntelliJ license file from ${INTELLIJ_LICENSE_KEY_URL}"
 sudo curl -L "${INTELLIJ_LICENSE_KEY_URL}" --output "${INTELLIJ_CONFIG_FOLDER}/idea.key"
 sudo chmod 777 "${INTELLIJ_CONFIG_FOLDER}/idea.key"
-ls -al "${INTELLIJ_CONFIG_FOLDER}/idea.key"
-cat "${INTELLIJ_CONFIG_FOLDER}/idea.key"
 
 echo "IntelliJ is ready to use"
