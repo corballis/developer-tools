@@ -2,7 +2,7 @@
 
 #set -e
 
-# Set the following environment varibales with the proper values before execute this script:
+# Set the following environment variables with the proper values before execute this script:
 # DEVELOPER_TOOLS_PATH: ~/developer-tools
 # $1: The path to the files which need to be formatted
 # $2: The path to the root of the git repository of the formatted files
@@ -16,8 +16,8 @@ cd $2
 echo "Checking that the formatted files are unchanged"
 if [[ $(git status | grep "modified:" | wc -l) -gt 0 ]]; then
 	echo "The code format of the following files have been changed:"
-	git status
-	git diff
+	git --no-pager status
+	git --no-pager diff
 	exit 1
 fi
 
