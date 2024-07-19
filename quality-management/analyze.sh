@@ -61,7 +61,7 @@ TASK_URL=$(sonar-scanner -D sonar.projectKey=$PROJECT_KEY \
 
 #TASK_URL=$(mvn compile -DskipTests sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.projectName=$PROJECT_KEY -Dsonar.projectBaseDir=$SONAR_PROJECT_DIR -Dsonar.host.url=$SONAR_SERVER_URL -Dsonar.exclusions=$SONAR_EXCLUSIONS -Dsonar.login=$SONAR_LOGIN | tee out | grep -Eo 'http.*/api/ce/task.*')
 
-CONNECT_RETRY=30
+CONNECT_RETRY=60
 counter=0
 echo "Task result will be available at $TASK_URL. Polling started..."
 while [ -z ${SONAR_TASK_READY} ]; do
